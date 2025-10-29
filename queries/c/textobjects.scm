@@ -1,14 +1,3 @@
-; TODO: supported by official Tree-sitter  if (_)* is more than one node
-; Neovim: will only match if (_) is exactly one node
-;(function_definition
-;body:  (compound_statement
-;("{" (_)* @function.inner "}"))?) @function.outer
-(declaration
-  declarator: (function_declarator)) @function.outer
-
-(function_definition
-  body: (compound_statement)) @function.outer
-
 (function_definition
   body: (compound_statement
     .
@@ -18,7 +7,7 @@
     (_)? @_end
     .
     "}"
-    (#make-range! "function.inner" @_start @_end)))
+    (#make-range! "function.inner" @_start @_end))) @function.outer
 
 (struct_specifier
   body: (_) @class.inner) @class.outer
