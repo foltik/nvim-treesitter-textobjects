@@ -107,7 +107,15 @@
     "}"
     (#make-range! "loop.inner" @_start @_end))) @loop.outer
 
-(compound_statement) @block.outer
+(compound_statement
+  .
+  "{"
+  .
+  (_) @_start @_end
+  (_)? @_end
+  .
+  "}"
+  (#make-range! "block.inner" @_start @_end)) @block.outer
 
 (comment) @comment.outer
 
