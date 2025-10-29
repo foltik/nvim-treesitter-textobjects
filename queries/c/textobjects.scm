@@ -10,10 +10,24 @@
     (#make-range! "function.inner" @_start @_end))) @function.outer
 
 (struct_specifier
-  body: (_) @class.inner) @class.outer
+  body: (field_declaration_list
+    .
+    "{"
+    . (_) @_start @_end
+    (_)? @_end
+    .
+    "}"
+    (#make-range! "class.inner" @_start @_end))) @class.outer
 
 (enum_specifier
-  body: (_) @class.inner) @class.outer
+  body: (enumerator_list
+    .
+    "{"
+    . (_) @_start @_end
+    (_)? @_end
+    .
+    "}"
+    (#make-range! "class.inner" @_start @_end))) @class.outer
 
 ; conditionals
 (if_statement
