@@ -122,18 +122,17 @@
 
 (comment) @comment.outer
 
-(call_expression) @call.outer
-
 (call_expression
   arguments: (argument_list
     .
     "("
     .
     (_) @_start
-    (_)? @_end
+    (_)* 
+    (_) @_end
     .
     ")"
-    (#make-range! "call.inner" @_start @_end)))
+    (#make-range! "call.inner" @_start @_end))) @call.outer
 
 (return_statement
   (_)? @return.inner) @return.outer
